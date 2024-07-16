@@ -9,7 +9,7 @@ function train() {
   python src/train.py
 }
 command=$1
-
+cd src
 case $command in
 'dataset')
   dataset
