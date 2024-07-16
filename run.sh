@@ -1,7 +1,7 @@
 #!/bin/bash
 function dataset() {
   input="/kaggle/input/kuaishou/KuaiSAR_final/src_inter.csv"
-  output="/kaggle/working/rec_system/src/dataset"
+  output="/kaggle/input"
   python src/dataset.py --input ${input} --output ${output}
 }
 
