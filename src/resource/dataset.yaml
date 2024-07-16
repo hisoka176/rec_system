@@ -1,4 +1,4 @@
-train_dataset: [ 'dataset/test_data.csv' ]
-test_dataset: [ 'dataset/test_data.csv' ]
+train_dataset: [ '/kaggle/working/rec_system/src/dataset/test_data.csv' ]
+test_dataset: [ '/kaggle/working/rec_system/src/dataset/test_data.csv' ]
 labels:
   - 'click'
