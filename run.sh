@@ -4,13 +4,15 @@ function dataset() {
   python src/dataset.py --file ${filepath}
 }
 
-command=$1
+dataset
 
-case $command in
-dataset)
-  dataset
-  ;;
-*)
-  echo "error command"
-  ;;
-esac
+#command=$1
+#
+#case $command in
+#dataset)
+#  dataset
+#  ;;
+#*)
+#  echo "error command"
+#  ;;
+#esac
