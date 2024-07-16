@@ -1,0 +1,14 @@
+config:
+  - name: "user_id"
+    dtype: "string"
+    dim: 128
+    bucket: 400000
+    mode: 'category'
+  - name: "item_id"
+    dtype: "string"
+    dim: 128
+    bucket: 400000
+    mode: 'category'
+input_layer:
+  main: [ 'user_id', 'item_id' ]
+

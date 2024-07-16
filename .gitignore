@@ -1,0 +1,7 @@
+*.pdf
+src/dataset/*
+__pycache__/
+model_dir
+model_dir/*
+*.zip
+.idea
