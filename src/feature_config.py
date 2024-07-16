@@ -27,7 +27,8 @@ def build_feature_column(features):
     for feature in features:
         key = feature['name']
         if feature.get('mode', '') == 'category':
-            fc = tf.feature_column.categorical_column_with_hash_bucket(key=key, hash_bucket_size=feature['bucket'])
+            fc = tf.feature_column.categorical_column_with_hash_bucket(key=key, hash_bucket_size=feature['bucket'],
+                                                                       dtype=tf.int64)
             ec = tf.feature_column.embedding_column(fc, dimension=feature['dim'])
             mapping[key] = ec
     return mapping

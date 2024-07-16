@@ -7,7 +7,7 @@ import pandas as pd
 def main(args):
     pd.set_option('display.max_columns', None)
     filepath = args.input
-    data = pd.read_csv(filepath)
+    data = pd.read_csv(filepath,)
     # data['user_id'] = data['user_id'].apply('str')
     data['user_id'] = data['user_id'].astype(str)
     # data['item_id'] = data['item_id'].apply('str')
@@ -20,7 +20,6 @@ def main(args):
     train_data.to_csv(os.path.join(args.output, 'train_data.csv'), index=False)
     dev_data.to_csv(os.path.join(args.output, 'dev_data.csv'), index=False)
     test_data.to_csv(os.path.join(args.output, 'test_data.csv'), index=False)
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
