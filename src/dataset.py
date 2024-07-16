@@ -8,11 +8,11 @@ def main(args):
     pd.set_option('display.max_columns', None)
     filepath = args.input
     data = pd.read_csv(filepath)
-
     # data['user_id'] = data['user_id'].apply('str')
     data['user_id'] = data['user_id'].apply(str)
     # data['item_id'] = data['item_id'].apply('str')
     data['item_id'] = data['item_id'].apply(str)
+    print(data.dtypes)
     train_data = data.sample(frac=0.8, axis=0)
     other_data = data[~data.index.isin(train_data.index)]
     dev_data = other_data.sample(frac=0.5, axis=0)

@@ -9,6 +9,7 @@ todo
  7 esmm2的处理
  8. 时长的处理，使用ndcg处理
 """
+import os
 
 import tensorflow.compat.v1 as tf
 
@@ -16,6 +17,7 @@ from inputs import input_fn
 from utils import load_module
 from params import params
 
+os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
 tf.logging.set_verbosity(tf.logging.INFO)
 if tf.gfile.Exists('model_dir'):
     tf.gfile.DeleteRecursively('model_dir')
