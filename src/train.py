@@ -11,7 +11,8 @@ todo
 """
 import os
 
-import tensorflow.compat.v1 as tf
+# import tensorflow.compat.v1 as tf
+import tensorflow as tf
 
 from inputs import input_fn
 from utils import load_module
