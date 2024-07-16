@@ -19,7 +19,6 @@ from inputs import input_fn
 from utils import load_module
 from params import params
 
-tf.logging.set_verbosity(tf.logging.DEBUG)
 if tf.gfile.Exists('model_dir'):
     tf.gfile.DeleteRecursively('model_dir')
 

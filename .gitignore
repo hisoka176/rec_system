@@ -2,5 +2,6 @@
 __pycache__/
 model_dir
 model_dir/*
+src/dataset
 *.zip
 .idea
