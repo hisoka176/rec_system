@@ -12,13 +12,14 @@ todo
 import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
+os.environ['TF_LOG_DIR'] = '/dev/stdout'
 import tensorflow.compat.v1 as tf
 
 from inputs import input_fn
 from utils import load_module
 from params import params
 
-os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
 tf.logging.set_verbosity(tf.logging.DEBUG)
 if tf.gfile.Exists('model_dir'):
     tf.gfile.DeleteRecursively('model_dir')
