@@ -1,4 +1,5 @@
 import argparse
+import os
 
 import pandas as pd
 
@@ -17,13 +18,14 @@ def main(args):
     dev_data = other_data.sample(frac=0.5, axis=0)
     test_data = other_data[~other_data.isin(dev_data.index)]
 
-    train_data.to_csv('dataset/train_data.csv', index=False)
-    dev_data.to_csv('dataset/dev_data.csv', index=False)
-    test_data.to_csv('dataset/test_data.csv', index=False)
+    train_data.to_csv(os.path.join(args.output, 'train_data.csv'), index=False)
+    dev_data.to_csv(os.path.join(args.output, 'dev_data.csv'), index=False)
+    test_data.to_csv(os.path.join(args.output, 'test_data.csv'), index=False)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--file', type=str, default='', help='file')
+    parser.add_argument('--input', type=str, default='', help='input')
+    parser.add_argument('--output', type=str, default='src/dataset', help='output')
     args = parser.parse_args()
     main(args)
