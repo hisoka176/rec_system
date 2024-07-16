@@ -13,7 +13,6 @@ import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0'
 os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
-os.environ['TF_LOG_DIR'] = '/dev/stdout'
 import tensorflow.compat.v1 as tf
 
 from inputs import input_fn
