@@ -1,4 +1,4 @@
-train_dataset: [ 'dataset/test_data.csv' ]
-test_dataset: [ 'dataset/test_data.csv' ]
+train_dataset: [ 'dataset/train_data.csv' ]
+test_dataset: [ 'dataset/dev_data.csv' ]
 labels:
   - 'click'
