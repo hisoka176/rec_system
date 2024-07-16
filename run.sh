@@ -5,15 +5,19 @@ function dataset() {
   python src/dataset.py --input ${input} --output ${output}
 }
 
-dataset
+function train() {
+  python src/train.py
+}
+command=$1
 
-#command=$1
-#
-#case $command in
-#dataset)
-#  dataset
-#  ;;
-#*)
-#  echo "error command"
-#  ;;
-#esac
+case $command in
+'dataset')
+  dataset
+  ;;
+'train')
+  train
+  ;;
+*)
+  echo "error command"
+  ;;
+esac
