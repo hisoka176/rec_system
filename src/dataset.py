@@ -6,7 +6,7 @@ import pandas as pd
 
 def main(args):
     pd.set_option('display.max_columns', None)
-    filepath = args.file
+    filepath = args.input
     data = pd.read_csv(filepath)
 
     # data['user_id'] = data['user_id'].apply('str')
