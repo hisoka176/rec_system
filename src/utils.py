@@ -3,7 +3,8 @@ import importlib
 
 def load_module(module):
     name = f'models.{module}'
-    print(f'load_module ==== {name}')
+    print(f'====load_module ====')
+    print(f'\t{name}')
     module = importlib.import_module(name=name)
     return module.model_fn
 
