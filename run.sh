@@ -2,7 +2,7 @@
 function dataset() {
   input="/kaggle/input/kuaishou/KuaiSAR_final/src_inter.csv"
   output="/kaggle/working/rec_system/src/dataset"
-  python src/dataset.py --input ${filepath} --output ${output}
+  python src/dataset.py --input ${input} --output ${output}
 }
 
 dataset
