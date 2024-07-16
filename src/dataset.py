@@ -25,6 +25,6 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--input', type=str, default='', help='input')
-    parser.add_argument('--output', type=str, default='/kaggle/input', help='output')
+    parser.add_argument('--output', type=str, default='dataset', help='output')
     args = parser.parse_args()
     main(args)
