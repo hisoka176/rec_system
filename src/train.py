@@ -30,13 +30,17 @@ config = tf.estimator.RunConfig(
 
 model_fn = load_module(params['flags'].model)
 
+print('number', int(
+    params['train']['train_dataset_size'] / params['train']['batch_size'] *
+    params['train']['epoch']))
+print('number 2', int(params['train']['dev_dataset_size'] / params['train']['batch_size']))
 estimator = tf.estimator.Estimator(model_fn=model_fn, config=config, params=params)
 train_spec = tf.estimator.TrainSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.TRAIN, params=params),
                                     max_steps=int(
                                         params['train']['train_dataset_size'] / params['train']['batch_size'] *
                                         params['train']['epoch']))
 eval_spec = tf.estimator.EvalSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.EVAL, params=params),
-                                  steps=int(params['train']['train_dataset_size'] / params['train']['batch_size']),
+                                  steps=int(params['train']['dev_dataset_size'] / params['train']['batch_size']),
                                   name='eval', hooks=[])
 tf.estimator.train_and_evaluate(estimator=estimator, train_spec=train_spec, eval_spec=eval_spec)
 # print(result[0])
