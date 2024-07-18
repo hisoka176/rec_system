@@ -39,6 +39,7 @@ eval_spec = tf.estimator.EvalSpec(input_fn=lambda: input_fn(mode=tf.estimator.Mo
                                   steps=int(params['train']['train_dataset_size'] / params['train']['batch_size']),
                                   name='eval', hooks=[])
 (metrics, _) = tf.estimator.train_and_evaluate(estimator=estimator, train_spec=train_spec, eval_spec=eval_spec)
-with tf.gfile.Open('model_dir/metrics.json', 'w') as f:
-    print(metrics)
-    f.write(str(metrics))
+print(metrics)
+# with tf.gfile.Open('model_dir/metrics.json', 'w') as f:
+#     print(metrics)
+# f.write(str(metrics))
