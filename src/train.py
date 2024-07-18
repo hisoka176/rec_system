@@ -16,7 +16,6 @@ os.environ["CUDA_VISIBLE_DEVICES"] = '5,6'
 import tensorflow.compat.v1 as tf
 
 tf.logging.set_verbosity(tf.logging.INFO)
-
 from inputs import input_fn
 from utils import load_module
 from params import params
@@ -33,7 +32,13 @@ model_fn = load_module(params['flags'].model)
 
 estimator = tf.estimator.Estimator(model_fn=model_fn, config=config, params=params)
 train_spec = tf.estimator.TrainSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.TRAIN, params=params),
-                                    max_steps=params['train']['max_steps'])
-eval_spec = tf.estimator.EvalSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.EVAL, params=params), steps=91,
+                                    max_steps=int(
+                                        params['train']['train_dataset_size'] / params['train']['batch_size'] *
+                                        params['train']['epoch']))
+eval_spec = tf.estimator.EvalSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.EVAL, params=params),
+                                  steps=int(params['train']['train_dataset_size'] / params['train']['batch_size']),
                                   name='eval', hooks=[])
-tf.estimator.train_and_evaluate(estimator=estimator, train_spec=train_spec, eval_spec=eval_spec)
+(metrics, _) = tf.estimator.train_and_evaluate(estimator=estimator, train_spec=train_spec, eval_spec=eval_spec)
+with tf.gfile.Open('model_dir/metrics.json', 'w') as f:
+    print(metrics)
+    f.write(str(metrics))

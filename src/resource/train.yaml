@@ -1,3 +1,6 @@
 lr: 0.001
 epoch: 2
-max_steps: 1600
+batch_size: 16384
+train_dataset_size: 5994482
+dev_dataset_size: 749311
+test_dataset_size: 1498621
