@@ -43,8 +43,7 @@ def model_fn(features, labels, mode, params):
         "train_loss": loss,
         'auc': metric_auc[0],
         'precision': metric_precision[0],
-        'recall': metric_recall[0],
-        'lr': params['train']['lr']
+        'recall': metric_recall[0]
     }
 
     training_hooks = [tf.estimator.LoggingTensorHook(tensors=tensors_to_log,
