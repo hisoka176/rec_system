@@ -12,7 +12,7 @@ todo
 import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0'
-os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
+os.environ["CUDA_VISIBLE_DEVICES"] = '5,6'
 import tensorflow.compat.v1 as tf
 
 tf.logging.set_verbosity(tf.logging.INFO)
