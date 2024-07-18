@@ -34,6 +34,6 @@ model_fn = load_module(params['flags'].model)
 estimator = tf.estimator.Estimator(model_fn=model_fn, config=config, params=params)
 train_spec = tf.estimator.TrainSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.TRAIN, params=params),
                                     max_steps=params['train']['max_steps'])
-eval_spec = tf.estimator.EvalSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.EVAL, params=params), steps=30,
+eval_spec = tf.estimator.EvalSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.EVAL, params=params), steps=91,
                                   name='eval', hooks=[])
 tf.estimator.train_and_evaluate(estimator=estimator, train_spec=train_spec, eval_spec=eval_spec)
