@@ -41,9 +41,9 @@ def model_fn(features, labels, mode, params):
     tensors_to_log = {
         "global_step": tf.train.get_global_step(),
         "train_loss": loss,
-        'auc': metric_auc[0],
-        'precision': metric_precision[0],
-        'recall': metric_recall[0]
+        'auc': metric_auc[0].value,
+        'precision': metric_precision[0].value,
+        'recall': metric_recall[0].value
     }
 
     training_hooks = [tf.estimator.LoggingTensorHook(tensors=tensors_to_log,
