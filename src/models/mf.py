@@ -26,14 +26,15 @@ def model_fn(features, labels, mode, params):
     metric_recall = tf.metrics.precision(labels=labels['click'], predictions=predictions)
     metric_loss = tf.metrics.mean(output)
 
+    eval_metric_ops = {
+        'auc': metric_auc,
+        'precision': metric_precision,
+        'recall': metric_recall,
+        'metric_loss': metric_loss,
+    }
     if mode == tf.estimator.ModeKeys.EVAL:
         return tf.estimator.EstimatorSpec(
-            mode=mode, eval_metric_ops={
-                'auc': metric_auc,
-                'precision': metric_precision,
-                'recall': metric_recall,
-                'metric_loss': metric_loss,
-            }, loss=loss
+            mode=mode, eval_metric_ops=eval_metric_ops, loss=loss
         )
     tf.summary.scalar('loss', loss)
     optimizer = tf.train.AdamOptimizer(learning_rate=params['train']['lr'])
@@ -50,6 +51,6 @@ def model_fn(features, labels, mode, params):
                                                      every_n_iter=100)]
 
     output_spec = tf.estimator.EstimatorSpec(
-        mode=mode, loss=loss, train_op=train_op, training_hooks=training_hooks
+        mode=mode, loss=loss, train_op=train_op, training_hooks=training_hooks, eval_metric_ops=eval_metric_ops
     )
     return output_spec
