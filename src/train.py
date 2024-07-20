@@ -35,13 +35,19 @@ print('number', int(
     params['train']['epoch']))
 print('number 2', int(params['train']['dev_dataset_size'] / params['train']['batch_size']))
 estimator = tf.estimator.Estimator(model_fn=model_fn, config=config, params=params)
+
+loss_hook = tf.estimator.experimental.stop_if_no_decrease_hook(estimator=estimator, metric_name='loss',
+                                                               max_steps_without_decrease=10, run_every_secs=100)
+auc_hook = tf.estimator.experimental.stop_if_no_increase_hook(estimator=estimator, metric_name='auc',
+                                                              max_steps_without_increase=10, run_every_steps=100)
+hooks = [loss_hook, auc_hook]
 train_spec = tf.estimator.TrainSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.TRAIN, params=params),
                                     max_steps=int(
                                         params['train']['train_dataset_size'] / params['train']['batch_size'] *
-                                        params['train']['epoch']))
+                                        params['train']['epoch']), hooks=hooks)
 eval_spec = tf.estimator.EvalSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.EVAL, params=params),
                                   steps=int(params['train']['dev_dataset_size'] / params['train']['batch_size']),
-                                  name='eval', hooks=[])
+                                  name='eval', hooks=[], )
 tf.estimator.train_and_evaluate(estimator=estimator, train_spec=train_spec, eval_spec=eval_spec)
 # print(result[0])
 # print(result[1])

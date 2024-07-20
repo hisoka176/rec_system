@@ -48,6 +48,7 @@ def model_fn(features, labels, mode, params):
 
     training_hooks = [tf.estimator.LoggingTensorHook(tensors=tensors_to_log,
                                                      every_n_iter=100)]
+
     output_spec = tf.estimator.EstimatorSpec(
         mode=mode, loss=loss, train_op=train_op, training_hooks=training_hooks
     )
