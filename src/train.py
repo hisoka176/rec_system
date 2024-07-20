@@ -37,9 +37,11 @@ print('number 2', int(params['train']['dev_dataset_size'] / params['train']['bat
 estimator = tf.estimator.Estimator(model_fn=model_fn, config=config, params=params)
 
 loss_hook = tf.estimator.experimental.stop_if_no_decrease_hook(estimator=estimator, metric_name='loss',
-                                                               max_steps_without_decrease=100, run_every_steps=100)
+                                                               max_steps_without_decrease=100, run_every_secs=None,
+                                                               run_every_steps=100)
 auc_hook = tf.estimator.experimental.stop_if_no_increase_hook(estimator=estimator, metric_name='auc',
-                                                              max_steps_without_increase=100, run_every_steps=100)
+                                                              max_steps_without_increase=100, run_every_secs=None,
+                                                              run_every_steps=100)
 hooks = [loss_hook, auc_hook]
 train_spec = tf.estimator.TrainSpec(input_fn=lambda: input_fn(mode=tf.estimator.ModeKeys.TRAIN, params=params),
                                     max_steps=int(
